@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 @Controller
 public class DojoController {
@@ -41,5 +42,16 @@ public class DojoController {
 		String time = formatter.format(new Date());
 		model.addAttribute("time", time);
 		return "time.jsp";
+	}
+	
+	@RequestMapping(value = "/check", method = RequestMethod.POST)
+	public String code(Model model, @RequestParam(value="code") String userCode, RedirectAttributes ra){
+		String code = "bushido";
+		if(userCode.equals(code))
+			return "code.jsp";
+		else{
+			ra.addFlashAttribute("error", "You must train harder!");
+			return "redirect:/";
+		}
 	}
 }
