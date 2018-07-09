@@ -54,4 +54,15 @@ public class DojoController {
 			return "redirect:/";
 		}
 	}
+	
+	@RequestMapping(value="/survey", method=RequestMethod.POST)
+	public String survey(Model model, @RequestParam(value="name") String name, @RequestParam(value="location") String location, @RequestParam(value="language") String language, @RequestParam(value="comment") String comment){
+		System.out.println(location);
+		model.addAttribute("name", name);
+		model.addAttribute("location", location);
+		model.addAttribute("comment", comment);
+		model.addAttribute("language", language);
+		
+		return "results.jsp";
+	}
 }

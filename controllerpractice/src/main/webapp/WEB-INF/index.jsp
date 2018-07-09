@@ -22,5 +22,25 @@
 				<button>Try Code</button>
 			</form>
 		</div>
+
+		<h1>Log in here</h1>
+		<div class='survey'>
+			<form action="/survey" method="POST">
+				Your name: <br><input type="text" name="name"><br>
+				<select name="location">
+					<option value="San Jose">San Jose</option>
+					<option value="Mars">Mars</option>
+					<option value="Tysons">Tysons</option>
+				</select><br>
+				<select name="language">
+					<option value="Python">Python</option>
+					<option value="Java">Java</option>
+					<option value="English">English</option>
+				</select><br>
+				Comment(optional): <br>
+				<textarea name="comment" cols="30" rows="10"></textarea><br>
+				<button>Submit</button>
+			</form>
+		</div>
 	</body>
 </html>
