@@ -9,6 +9,8 @@
 		<title>Home</title>
 	</head>
 	<body>
-		<H1>Welcome <c:out value="${ dojoName }"/></H1>
+		<p>You have visited this page <%= request.getSession().getAttribute("count") %> time(s).</p>
+		<a href="/date">Click here for the date</a><br>
+		<a href="/time">Click here for the time</a><br>
 	</body>
 </html>
