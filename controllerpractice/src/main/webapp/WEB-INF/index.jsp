@@ -42,5 +42,7 @@
 				<button>Submit</button>
 			</form>
 		</div>
+
+		<h1 onClick="javascript:window.location.href='/gold'">Play Ninja Gold</h1>
 	</body>
 </html>

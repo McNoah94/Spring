@@ -2,6 +2,7 @@ package com.example.demo;
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.util.Date;
+import java.util.ArrayList;
 
 import javax.servlet.http.HttpSession;
 
@@ -64,5 +65,49 @@ public class DojoController {
 		model.addAttribute("language", language);
 		
 		return "results.jsp";
+	}
+	
+	@RequestMapping(value="/gold")
+	public String gold(Model model, HttpSession session) {
+		if(session.getAttribute("gold") == null)
+			session.setAttribute("gold", 0);
+		if(session.getAttribute("activities") == null){
+			session.setAttribute("activities", new ArrayList<String>());
+		}
+		
+		model.addAttribute("gold", session.getAttribute("gold"));
+		model.addAttribute("activities");
+		return "gold.jsp";
+	}
+
+	@RequestMapping(value="/addGold", method=RequestMethod.POST)
+	public String addGold(HttpSession session, @RequestParam(value="box") String s){
+		int i = 0;
+		ArrayList<String> list = (ArrayList) session.getAttribute("activities");
+		switch(s){
+			case "cave":
+				i = (5 + (int) Math.round((Math.random() * 5)));
+				list.add("You earned " + i + " gold in the " + s + ". (" + new Date() + ")");
+				break;
+			case "house":
+				i = (2 + (int) Math.round((Math.random() * 3)));
+				list.add("You earned " + i + " gold in the " + s + ". (" + new Date() + ")");
+				break;
+			case "farm":
+				i = (10 + (int) Math.round((Math.random() * 10)));
+				list.add("You earned " + i + " gold in the " + s + ". (" + new Date() + ")");
+				break;
+			case "casino":
+				i = (-50 + (int) Math.round((Math.random() * 100)));
+				if(i < 0)
+					list.add("You lost " + i + " gold in the " + s + ". (" + new Date() + ")");
+				else
+					list.add("You earned " + i + " gold in the " + s + ". (" + new Date() + ")");
+				break;
+		}
+		session.setAttribute("activities", list);
+		System.out.println(list);
+		session.setAttribute("gold",  (int) session.getValue("gold") + i);
+		return "redirect:/gold";
 	}
 }
