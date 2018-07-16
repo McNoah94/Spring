@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Insert title here</title>
+<title>Add</title>
 </head>
 <body>
     <h1>We gots us some products up in hurr</h1>
@@ -34,12 +34,13 @@
 
         <div class="categoryForm">
             <h1>New Category</h1>
-            <form:form action="/product" method="post" modelAttribute="product">
+            <form:form action="/category" method="post" modelAttribute="category">
                 <p>
                     <form:label path="name">Name:</form:label>
                     <form:errors path="name"/>
                     <form:input path="name"/>
                 </p>
+                <button type="submit">Submit</button>
             </form:form>
         </div>
     </div>
