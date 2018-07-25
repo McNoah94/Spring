@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.codingdojo.template.models.User;
 import com.codingdojo.template.services.MainService;
@@ -47,13 +48,13 @@ public class MainController {
 	}
 	
 	@RequestMapping(value="/login", method=RequestMethod.POST)
-	public String login(Model model, HttpSession session, @RequestParam("logEmail") String email, @RequestParam("logPass") String pass){
+	public String login(RedirectAttributes attr, Model model, HttpSession session, @RequestParam("logEmail") String email, @RequestParam("logPass") String pass){
 		if(s.authenticateUser(email, pass)) {
 			session.setAttribute("user", s.findByEmail(email).getId());
 			return "redirect:/home";
 		}
 		else {
-			model.addAttribute("error", "Email/password incorrect");
+			attr.addFlashAttribute("error", "Email/password incorrect");
 			return "redirect:/";
 		}
 	}

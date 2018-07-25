@@ -52,6 +52,7 @@
         <div id="logBox" class="form-group">
             <h1>Login</h1>
             <p style="color: green; font-size:12px;"><c:out value="${success}"/></p>
+            <p style="color: red; font-size:12px;"><c:out value="${error}"/></p>
             <form method="post" action="/login">
                 Email: <input type="text" name="logEmail" class="form-control"><br>
                 Password: <input type="password" name="logPass" class="form-control"><br>
