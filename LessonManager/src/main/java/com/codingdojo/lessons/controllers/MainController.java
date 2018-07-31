@@ -1,11 +1,17 @@
 package com.codingdojo.lessons.controllers;
 
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.List;
+import java.util.stream.Collectors;
+
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -16,7 +22,8 @@ import com.codingdojo.lessons.models.User;
 import com.codingdojo.lessons.services.MainService;
 import com.codingdojo.lessons.validator.MainValidator;
 
-@Controller
+//@Controller
+@CrossOrigin(origins = "http://localhost:4200")
 public class MainController {
 	
 	private final MainService s;
@@ -49,5 +56,10 @@ public class MainController {
 	public String home(HttpSession session, Model model){
 		model.addAttribute("teacher", session.getAttribute("teacher"));
 		return "index.jsp";
+	}
+	
+	@RequestMapping("/teachers")
+	public List<Teacher> coolCars() {
+	    return s.allTeachers();
 	}
 }

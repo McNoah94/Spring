@@ -54,4 +54,8 @@ public class MainService {
     	else
     		return false;
     }
+    
+    public List<Teacher> allTeachers(){
+    	return tr.findAll();
+    }
 }
