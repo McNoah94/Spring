@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { CarService } from '../car.service';
+import { Router, ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-car',
@@ -7,14 +8,14 @@ import { CarService } from '../car.service';
   styleUrls: ['./car.component.css']
 })
 export class CarComponent implements OnInit {
-  cars:Array<any>;
+  car: any;
 
-  constructor(private cs: CarService){}
+  constructor(private cs: CarService, private route: ActivatedRoute){}
 
   ngOnInit(){
-    this.cs.getAll().subscribe(data => {
-      console.log(data)
-      this.cars = data;
+    this.cs.findCar(this.route.params["_value"]["id"]).subscribe(data =>{
+      console.log(data);
+      this.car = data;
     })
   }
 
