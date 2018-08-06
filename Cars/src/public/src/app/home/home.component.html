@@ -5,12 +5,12 @@
 <div class="container">
   <div class="jumbotron">
     <h1>Car Snobs</h1>
-    <p>The greater Metropolitan Metro DC tri-state area's highest-rated online luxury car sales and image gallery</p>
+    <p>The greater Metropolitan Metro DC tri-state area's highest-rated online luxury car sales and image gallery portfolio</p>
   </div>
   <div class="car media">
     <h3>Check out this awesome car!</h3>
     <p>{{ randomCar.year + " " + randomCar.make + " " + randomCar.model}}</p>
     <img id="randomCar" src="{{randomCar.url}}" alt="{{randomCar.make}}"><br>
-    <button [routerLink]="['./car', randomCar.id]" class="btn">See this car</button>
+    <button [routerLink]="['./car', randomCar.id]" class="btn">See this car <span class="glyphicon glyphicon-chevron-right"></span></button>
   </div>
 </div>

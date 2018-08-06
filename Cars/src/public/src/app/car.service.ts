@@ -16,4 +16,9 @@ export class CarService {
   findCar(id){
     return this.http.get("http://localhost:8080/car/" + id);
   }
+
+  wikiCar(make, model){
+    console.log("https://en.wikipedia.org/w/api.php?action=query&list=search&srsearch=" + make + "%20" + model)
+    return this.http.get("https://en.wikipedia.org/w/api.php?action=query&list=search&srsearch=" + make + "%20" + model)
+  }
 }

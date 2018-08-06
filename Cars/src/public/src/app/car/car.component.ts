@@ -9,6 +9,7 @@ import { Router, ActivatedRoute } from '@angular/router';
 })
 export class CarComponent implements OnInit {
   car: any;
+  wikiUrl: any;
 
   constructor(private cs: CarService, private route: ActivatedRoute){}
 
@@ -16,7 +17,9 @@ export class CarComponent implements OnInit {
     this.cs.findCar(this.route.params["_value"]["id"]).subscribe(data =>{
       console.log(data);
       this.car = data;
+      this.cs.wikiCar(this.car.make, this.car.model).subscribe(data => {
+        this.wikiUrl = data;
+      })
     })
   }
-
 }
